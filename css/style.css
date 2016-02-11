@@ -1,0 +1,61 @@
+*{
+	font-family: Arial,sans-serif;
+	font-size: 1em;
+}
+body{
+	
+}
+
+footer{
+	height: 15%;
+	max-height: 15%;
+	width: 100%;
+}
+.clear{
+	clear: both;
+}
+.movielement{
+	width: 15%;
+	max-width: 15%;
+}
+
+#mainheader{
+	background-color: #FAFAFA;
+	height: 5%;
+	max-height: 5%;
+	padding: 0.5em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+#logo{
+	cursor: pointer;
+	display: inline-table;
+	max-width: 25%;
+	width: 25%;
+}
+#mainbar{
+	cursor: pointer;
+	display: inline-table;
+	letter-spacing: 2em;
+	margin: 0 auto;
+	max-width: 45%;
+	text-align: center;
+	width: 45%;
+}
+#userdiv{
+	display: inline-table;
+	max-width: 29%;
+	width: 29%;
+}
+#userdiv>img{
+	cursor: pointer;
+}
+#topview{
+	height: 35%;
+	max-height: 35%;
+}
+#mainview{
+	height: 45%;
+	max-height: 45%;
+}
