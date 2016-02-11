@@ -1,9 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700italic,700);
 *{
-	font-family: Arial,sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
 }
 body{
-	
+	/*background-color: red;*/
 }
 
 footer{
@@ -22,40 +23,78 @@ footer{
 #mainheader{
 	background-color: #FAFAFA;
 	height: 5%;
+	margin-bottom: 0.2em;
 	max-height: 5%;
 	padding: 0.5em;
+	padding-bottom: 2em;
 	position: fixed;
 	top: 0;
+	vertical-align: middle;
 	width: 100%;
 }
 #logo{
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
 	cursor: pointer;
-	display: inline-table;
+	display: inline-block;
 	max-width: 25%;
 	width: 25%;
 }
 #mainbar{
 	cursor: pointer;
-	display: inline-table;
-	letter-spacing: 2em;
+	display: inline-block;
 	margin: 0 auto;
 	max-width: 45%;
 	text-align: center;
 	width: 45%;
 }
+#mainbar > img{
+	padding: 0 0.5em 0 0.5em;
+}
 #userdiv{
-	display: inline-table;
+	display: inline-block;
 	max-width: 29%;
 	width: 29%;
 }
-#userdiv>img{
+#userdiv > img{
+	background-color: transparent;
 	cursor: pointer;
+	vertical-align:middle;
+}
+#container{
+	width: 100%;
 }
 #topview{
 	height: 35%;
+	margin-top: 3.2em;
 	max-height: 35%;
+	width: 100%;
+}
+#topview > img{
+	width: 100%;
 }
 #mainview{
 	height: 45%;
 	max-height: 45%;
+}
+
+@media screen and (max-width: 360px) {
+	#mainheader{
+		padding-bottom: 3em;
+	}
+	#logo,#userdiv{
+		min-width: 100%;
+	}
+	#logo{
+		display: block;
+	}
+	#logo > img{
+		width: auto;
+	}
+	#mainbar > img{
+		padding: 0;
+	}
+	#mainbar,#userdiv{
+		display: inline;
+	}
 }
