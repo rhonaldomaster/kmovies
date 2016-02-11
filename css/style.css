@@ -19,6 +19,16 @@ footer{
 	width: 15%;
 	max-width: 15%;
 }
+.info-item{
+	display: inline;
+}
+.info-title{
+	color: white;
+	font-weight: bold;
+}
+.info-data{
+	color: red;
+}
 
 #mainheader{
 	background-color: #FAFAFA;
