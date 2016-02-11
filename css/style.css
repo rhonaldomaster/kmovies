@@ -1,6 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700italic,700);
+@font-face {
+    font-family: Open Sans;
+    src: url(fonts/Open Sans regular.ttf);
+}
 *{
-	font-family: 'Open Sans', sans-serif;
+	font-family: Open Sans, sans-serif;
 	font-size: 1em;
 }
 body{
@@ -16,8 +19,14 @@ footer{
 	clear: both;
 }
 .movielement{
-	width: 15%;
+	border: 1px solid red;
+	border-radius: 0.6em;
+	display:inline-block;
+	min-height: 10em;
+	margin: 0 0.5em;
 	max-width: 15%;
+	padding: 0.5em;
+	width: 15%;
 }
 .info-item{
 	display: inline;
@@ -41,14 +50,14 @@ footer{
 	top: 0;
 	vertical-align: middle;
 	width: 100%;
+	z-index: 9; cbueno@tufin
 }
 #logo{
-	background-image: url(../img/logo.png);
-	background-repeat: no-repeat;
 	cursor: pointer;
 	display: inline-block;
-	max-width: 25%;
-	width: 25%;
+	max-width: 23%;
+	padding-left: 2em;
+	width: 23%;
 }
 #mainbar{
 	cursor: pointer;
@@ -63,8 +72,10 @@ footer{
 }
 #userdiv{
 	display: inline-block;
-	max-width: 29%;
-	width: 29%;
+	max-width: 25%;
+	padding-right: 0.7em;
+	text-align: right;
+	width: 25%;
 }
 #userdiv > img{
 	background-color: transparent;
@@ -72,20 +83,48 @@ footer{
 	vertical-align:middle;
 }
 #container{
+	margin: 0 auto;
 	width: 100%;
 }
 #topview{
 	height: 35%;
 	margin-top: 3.2em;
-	max-height: 35%;
+	position: relative;
 	width: 100%;
 }
 #topview > img{
-	width: 100%;
+	height: 15%;
 }
 #mainview{
 	height: 45%;
 	max-height: 45%;
+}
+#topview,#mainview{
+	padding-left: 0;
+	padding-right: 0;
+}
+#centerimg{
+	height: 95%
+	max-width: 100%;
+	overflow: hidden;
+}
+#centerimg > img{
+	width: 110%;
+}
+#infomov{
+	background-color: black;
+    bottom: 8.5%;
+	height: 5%;
+	opacity: 0.7;
+	padding: 0.5em;
+	padding-right: 0;
+	position: absolute;
+	width: 98.4%;
+}
+#info-right{
+	color: red;
+	float: right;
+	padding-right: 1em;
 }
 
 @media screen and (max-width: 360px) {
