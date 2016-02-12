@@ -1,31 +1,34 @@
 var imdb = {
 	url: "https://api.themoviedb.org/3",
-	mode: "/discover/movie?sort_by=popularity.desc",
-	key: "&api_key=e854c0d4c0559d18527b088a8e354568",
+	mode: "/movie/now_playing",
+	key: "?api_key=e854c0d4c0559d18527b088a8e354568",
 	api: "e854c0d4c0559d18527b088a8e354568",
 	imgurl: "https://image.tmdb.org/t/p/"
 };
+
 $(document).ready(function(){
 	$(".stars").stars();
 	queryTMDB();
+	//window.localStorage.removeItem("favs");
+	loadFavs();
 });
 
 function queryTMDB(){
-	var input="";
 	$(".newreleases-list").html("Searching ... ");
 	$.ajax({
 		type: 'GET',
-		url: imdb.url + imdb.mode + input + imdb.key,
+		url: imdb.url + imdb.mode + imdb.key,
 		dataType: 'jsonp',
 		success: function(resp) {
 			$(".newreleases-list").html("");
 			var json = resp.results;
 			$.each(json,function(i2,v){
 				if(i2==0) viewDetails(v.id);
+				var isfav = isFav(v.id);
 				$(".newreleases-list").append(
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
-							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
+							+"<div class='el-top-left'><img src='img/"+(isfav?"heartwhite":"heartred")+".png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
 							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+v.title+"\");'></div>"
 						+"</div>"
 						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
@@ -130,8 +133,66 @@ function addToFavs(id,elem){
 		$(elem).prop("src",imgrc[1]);
 	}
 	else{
-		lfavs = null;
+		var afavs = lfavs.split("|");
+		lfavs = "";
+		$.each(afavs,function(i2,v){
+			if(id!=v){
+				if(i2>0) lfavs += "|";
+				lfavs += v;
+			}
+		});
 		$(elem).prop("src",imgrc[0]);
+		if(lfavs=="") window.localStorage.removeItem("favs");
 	}
 	window.localStorage.setItem("favs",lfavs);
+	loadFavs();
+}
+
+function loadFavs(){
+	var lfavs = window.localStorage.getItem("favs");
+	$("#favorites-list").html("");
+	if(!lfavs){
+		$("#favorites-list").html("No favorites yet");
+	}
+	else{
+		var afavs = lfavs.split("|");
+		$.each(afavs,function(i2,v){
+			$.ajax({
+				type: 'GET',
+				url: imdb.url+"/movie/"+v+"?api_key="+imdb.api,
+				dataType: 'jsonp',
+				success: function(resp) {
+					var v1 = resp;
+					$("#favorites-list").append(
+						"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v1.poster_path)+");'>"
+							+"<div class='el-top'>"
+								+"<div class='el-top-left'><img src='img/heartwhite.png' alt='favs'> "+(numberWithCommas(v1.vote_count))+"</div>"
+								+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v1.id+",\""+v1.title+"\");'></div>"
+							+"</div>"
+							+"<div class='el-bottom' onclick='viewDetails("+v1.id+");'>"+v1.title+"</div>"
+						+"</div>"
+					);
+				},
+				error: function(e) {
+					console.log(e.message);
+				}
+			});
+		});
+	}
+}
+
+function isFav(id){
+	var lfavs = window.localStorage.getItem("favs");
+	var isf = false;
+	if(!lfavs) ;
+	else{
+		var afavs = lfavs.split("|");
+		for(i=0;i<afavs.length;i++){
+			if(id==afavs[i]){
+				console.log("encont en "+i);
+				isf = true;
+			}
+		}
+	}
+	return isf;
 }
