@@ -118,12 +118,12 @@ footer{
 	vertical-align:middle;
 }
 #container{
-	overflow: hidden;
 	width: 100%;
 }
 #topview{
 	height: 35%;
 	margin-top: 3.2em;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 }
