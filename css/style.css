@@ -213,6 +213,34 @@ footer{
 	text-shadow: 0 0 3px #000;
 	top: 15%;
 }
+#modal{
+	display: none;
+	background: rgba(0,0,0,.6);
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 10;
+}
+#modalbox{
+	background-color: white;
+	margin: 5% auto;
+	width: 50%;
+	z-index: 11;
+}
+#modal-head{
+	font-weight: bold;
+	padding: 1.5em;
+}
+#modal-video{
+	background-color: black;
+	text-align: center;
+}
+#modal-close{
+	cursor: pointer;
+	float: right;
+}
+#modal-footer{
+	padding: 1.5em;
+}
 
 @media screen and (max-width: 360px) {
 	#mainheader{

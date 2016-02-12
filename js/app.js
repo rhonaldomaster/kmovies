@@ -26,7 +26,7 @@ function queryTMDB(){
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
 							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
-							+"<div class='el-top-right'><img src='img/download.png' alt='download'></div>"
+							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+v.title+"\");'></div>"
 						+"</div>"
 						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
 					+"</div>"
@@ -67,6 +67,26 @@ function viewDetails(id){
 		},
 		error: function(e) {
 			console.log(e.message);
+		}
+	});
+}
+
+function openModal(id,ttl){
+	$("#modal").show();
+	$("#modal-video").html("");
+	$("#modal-head span").html(ttl);
+	$.ajax({
+		type: 'GET',
+		url: imdb.url+"/movie/"+id+"/videos?api_key="+imdb.api,
+		dataType: 'jsonp',
+		success: function(resp) {
+			var v = resp.results[0];
+			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/"+v.key+"?autoplay=0' frameborder='0' allowfullscreen></iframe>");
+			else $("#modal-video").html("No se encontr&oacute; el video");
+		},
+		error: function(e) {
+			console.log(e.message);
+			$("#modal-video").html("No se encontr&oacute; el video: "+e.message);
 		}
 	});
 }
