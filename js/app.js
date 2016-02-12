@@ -6,6 +6,7 @@ var imdb = {
 	imgurl: "https://image.tmdb.org/t/p/"
 };
 $(document).ready(function(){
+	$(".stars").stars();
 	queryTMDB();
 });
 
@@ -24,7 +25,7 @@ function queryTMDB(){
 				$(".newreleases-list").append(
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
-							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+v.vote_count+"</div>"
+							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
 							+"<div class='el-top-right'><img src='img/download.png' alt='download'></div>"
 						+"</div>"
 						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
@@ -52,12 +53,16 @@ function viewDetails(id){
 		dataType: 'jsonp',
 		success: function(resp) {
 			var v = resp;
+			var f = v.release_date;
+			var af2 = f.split("-");
+			var m = getMonthNameShort(af2[1]*1 - 1);
 			$("#centerimg img").prop("src",imdb.imgurl+bdropsize+v.backdrop_path);
 			$("#titlemov").html(v.title);
-			$("#release .info-data").html(v.release_date);
+			$("#release .info-data").html(m+" "+af2[2]+", "+af2[0]);
 			$("#runtime .info-data").html(v.runtime+" mins.");
-			$("#info-right span").html(v.vote_count);
+			$("#info-right span").html(numberWithCommas(v.vote_count));
 			$("#score .stars").html(v.vote_average/2);
+			$("#score .stars").prop("title",(parseFloat(v.vote_average/2).toFixed(2)));
 			$(".stars").stars();
 		},
 		error: function(e) {
