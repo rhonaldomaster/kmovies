@@ -24,10 +24,10 @@ function queryTMDB(){
 				$(".newreleases-list").append(
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
-							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs'> "+v.vote_count+"</div>"
+							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+v.vote_count+"</div>"
 							+"<div class='el-top-right'><img src='img/download.png' alt='download'></div>"
 						+"</div>"
-						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.original_title+"</div>"
+						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
 					+"</div>"
 				);
 			});
@@ -53,7 +53,7 @@ function viewDetails(id){
 		success: function(resp) {
 			var v = resp;
 			$("#centerimg img").prop("src",imdb.imgurl+bdropsize+v.backdrop_path);
-			$("#titlemov").html(v.original_title);
+			$("#titlemov").html(v.title);
 			$("#release .info-data").html(v.release_date);
 			$("#runtime .info-data").html(v.runtime+" mins.");
 			$("#info-right span").html(v.vote_count);
@@ -64,4 +64,11 @@ function viewDetails(id){
 			console.log(e.message);
 		}
 	});
+}
+
+function addToFavs(id,elem){
+	var imgsrc = $(elem).prop("src");
+	var imgrc = ["img/heartred.png","img/heartwhite.png"];
+	if(imgsrc.indexOf("img/heartred.png")>0) $(elem).prop("src",imgrc[1]);
+	else $(elem).prop("src",imgrc[0]);
 }

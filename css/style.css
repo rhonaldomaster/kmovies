@@ -42,6 +42,7 @@ footer{
 	cursor: pointer;
 }
 .movielement:hover{
+	border: 0.3em solid #cc0000;
 	opacity: 1;
 }
 .info-item{
@@ -53,7 +54,7 @@ footer{
 	font-weight: bold;
 }
 .info-data{
-	color: red;
+	color: #cc0000;
 }
 .el-top{
 	
@@ -205,8 +206,10 @@ footer{
 #titlemov{
 	color: white;
 	font-size: 4em;
+	max-width: 7em;
 	position: absolute;
 	right: 15%;
+	text-align: right;
 	text-shadow: 0 0 3px #000;
 	top: 15%;
 }
