@@ -25,19 +25,24 @@ footer{
 .movielement{
 	border-radius: 0.6em;
 	background-color: black;
+	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 	color: white;
 	display:inline-block;
 	min-height: 10em;
 	margin: 0 1.5em;
 	margin-top: 2em;
 	max-width: 10em;
-	opacity: 0.5;
+	opacity: 0.8;
 	padding: 0.5em;
 	position: relative;
+	text-shadow: 0 0 3px #000;
 	width: 10em;
 }
 .movielement > div > div > img{
 	cursor: pointer;
+}
+.movielement:hover{
+	opacity: 1;
 }
 .info-item{
 	display: inline;
@@ -63,6 +68,7 @@ footer{
 }
 .el-bottom{
 	bottom: 1em;
+	cursor: pointer;
 	display: block;
 	position: absolute;
 	text-align: center;
@@ -137,8 +143,8 @@ footer{
 	width: 85%;
 }
 #centerimg{
-	height: 95%;
-	max-width: 100%;
+	/*height: 95%;
+	max-width: 100%;*/
 	overflow: hidden;
 }
 #infomov{
@@ -195,6 +201,14 @@ footer{
 	cursor: pointer;
 	float: right;
 	padding-right: 2em;
+}
+#titlemov{
+	color: white;
+	font-size: 4em;
+	position: absolute;
+	right: 15%;
+	text-shadow: 0 0 3px #000;
+	top: 15%;
 }
 
 @media screen and (max-width: 360px) {
