@@ -89,11 +89,49 @@ function openModal(id,ttl){
 			$("#modal-video").html("No se encontr&oacute; el video: "+e.message);
 		}
 	});
+	 listSimilar();
+}
+
+function listSimilar(){
+	$("#modal-similar-list").html("");
+	$.ajax({
+		type: 'GET',
+		url: imdb.url+"/movie/now_playing?api_key="+imdb.api,
+		dataType: 'jsonp',
+		success: function(resp) {
+			var json = resp.results;
+			$.each(json,function(i2,v){
+				if(i2==0) viewDetails(v.id);
+				$("#modal-similar-list").append(
+					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
+						+"<div class='el-top'>"
+							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
+							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+v.title+"\");'></div>"
+						+"</div>"
+						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
+					+"</div>"
+				);
+			});
+		},
+		error: function(e) {
+			console.log(e.message);
+			$("#modal-video").html("No se encontr&oacute; el video: "+e.message);
+		}
+	});
 }
 
 function addToFavs(id,elem){
+	var lfavs = window.localStorage.getItem("favs");
 	var imgsrc = $(elem).prop("src");
 	var imgrc = ["img/heartred.png","img/heartwhite.png"];
-	if(imgsrc.indexOf("img/heartred.png")>0) $(elem).prop("src",imgrc[1]);
-	else $(elem).prop("src",imgrc[0]);
+	if(imgsrc.indexOf("img/heartred.png")>0){
+		if(!lfavs) lfavs = id;
+		else lfavs += "|"+id;
+		$(elem).prop("src",imgrc[1]);
+	}
+	else{
+		lfavs = null;
+		$(elem).prop("src",imgrc[0]);
+	}
+	window.localStorage.setItem("favs",lfavs);
 }

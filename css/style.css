@@ -75,9 +75,6 @@ footer{
 	text-align: center;
 	width: 90%;
 }
-.release-row{
-	
-}
 
 #mainheader{
 	background-color: #FAFAFA;
@@ -222,7 +219,7 @@ footer{
 }
 #modalbox{
 	background-color: white;
-	margin: 5% auto;
+	margin: 1% auto;
 	width: 50%;
 	z-index: 11;
 }
@@ -240,6 +237,14 @@ footer{
 }
 #modal-footer{
 	padding: 1.5em;
+}
+#modal-similar{
+	max-width: 100%;
+	overflow: auto;
+}
+#modal-similar-list{
+	margin-left: -1em;
+	width: 110%;
 }
 
 @media screen and (max-width: 360px) {
