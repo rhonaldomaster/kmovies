@@ -7,7 +7,7 @@
 	font-size: 1em;
 }
 body{
-	/*background-color: red;*/
+	
 }
 footer{
 	background-color: #3F434D;
@@ -141,8 +141,6 @@ footer{
 	width: 85%;
 }
 #centerimg{
-	/*height: 95%;
-	max-width: 100%;*/
 	overflow: hidden;
 }
 #infomov{
@@ -220,7 +218,7 @@ footer{
 #modalbox{
 	background-color: white;
 	margin: 1% auto;
-	width: 50%;
+	width: 52%;
 	z-index: 11;
 }
 #modal-head{
@@ -229,6 +227,7 @@ footer{
 }
 #modal-video{
 	background-color: black;
+	color: white;
 	text-align: center;
 }
 #modal-close{

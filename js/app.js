@@ -9,7 +9,6 @@ var imdb = {
 $(document).ready(function(){
 	$(".stars").stars();
 	queryTMDB();
-	//window.localStorage.removeItem("favs");
 	loadFavs();
 });
 
@@ -85,11 +84,11 @@ function openModal(id,ttl){
 		success: function(resp) {
 			var v = resp.results[0];
 			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/"+v.key+"?autoplay=0' frameborder='0' allowfullscreen></iframe>");
-			else $("#modal-video").html("No se encontr&oacute; el video");
+			else $("#modal-video").html("Trailer was not found");
 		},
 		error: function(e) {
 			console.log(e.message);
-			$("#modal-video").html("No se encontr&oacute; el video: "+e.message);
+			$("#modal-video").html("Trailer was not found: "+e.message);
 		}
 	});
 	 listSimilar();
@@ -118,7 +117,7 @@ function listSimilar(){
 		},
 		error: function(e) {
 			console.log(e.message);
-			$("#modal-video").html("No se encontr&oacute; el video: "+e.message);
+			$("#modal-similar-list").html("No movies found: "+e.message);
 		}
 	});
 }
