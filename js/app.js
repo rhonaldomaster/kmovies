@@ -28,7 +28,7 @@ function queryTMDB(){
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
 							+"<div class='el-top-left'><img src='img/"+(isfav?"heartwhite":"heartred")+".png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
-							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+v.title+"\");'></div>"
+							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'></div>"
 						+"</div>"
 						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
 					+"</div>"
@@ -83,7 +83,7 @@ function openModal(id,ttl){
 		dataType: 'jsonp',
 		success: function(resp) {
 			var v = resp.results[0];
-			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/"+v.key+"?autoplay=0' frameborder='0' allowfullscreen></iframe>");
+			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/"+v.key+"?autoplay=0&showinfo=1&controls=1' frameborder='0' allowfullscreen></iframe>");
 			else $("#modal-video").html("Trailer was not found");
 		},
 		error: function(e) {
@@ -108,7 +108,7 @@ function listSimilar(){
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
 							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
-							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+v.title+"\");'></div>"
+							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'></div>"
 						+"</div>"
 						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
 					+"</div>"
@@ -166,7 +166,7 @@ function loadFavs(){
 						"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v1.poster_path)+");'>"
 							+"<div class='el-top'>"
 								+"<div class='el-top-left'><img src='img/heartwhite.png' alt='favs'> "+(numberWithCommas(v1.vote_count))+"</div>"
-								+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v1.id+",\""+v1.title+"\");'></div>"
+								+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v1.id+",\""+((v1.title).replace(/'/g, ""))+"\");'></div>"
 							+"</div>"
 							+"<div class='el-bottom' onclick='viewDetails("+v1.id+");'>"+v1.title+"</div>"
 						+"</div>"
