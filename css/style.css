@@ -28,12 +28,16 @@ footer{
 	color: white;
 	display:inline-block;
 	min-height: 10em;
-	margin: 0 1em;
-	max-width: 15%;
+	margin: 0 1.5em;
+	margin-top: 2em;
+	max-width: 10em;
 	opacity: 0.5;
 	padding: 0.5em;
 	position: relative;
-	width: 15%;
+	width: 10em;
+}
+.movielement > div > div > img{
+	cursor: pointer;
 }
 .info-item{
 	display: inline;
@@ -47,7 +51,7 @@ footer{
 	color: red;
 }
 .el-top{
-	font-weight: bold;
+	
 }
 .el-top-left,.el-top-right{
 	display: inline-block;
@@ -64,14 +68,15 @@ footer{
 	text-align: center;
 	width: 90%;
 }
+.release-row{
+	
+}
 
 #mainheader{
 	background-color: #FAFAFA;
 	height: 5%;
-	margin-bottom: 0.2em;
 	max-height: 5%;
 	padding: 0.5em;
-	padding-bottom: 2em;
 	position: fixed;
 	top: 0;
 	vertical-align: middle;
@@ -132,24 +137,21 @@ footer{
 	width: 85%;
 }
 #centerimg{
-	height: 95%
+	height: 95%;
 	max-width: 100%;
 	overflow: hidden;
 }
-#centerimg > img{
-	width: 110%;
-}
 #infomov{
 	background-color: black;
-	bottom: 8.5%;
+	bottom: 0.1em;
 	height: 5%;
 	opacity: 0.7;
 	padding: 0.5em;
 	padding-left: 2em;
 	padding-right: 0;
-	padding-top: 1.6em;
+	padding-top: 1.4em;
 	position: absolute;
-	width: 96.65%;
+	width: 97.65%;
 }
 #info-right{
 	color: white;
@@ -160,6 +162,39 @@ footer{
 #info-right > img{
 	background-color: transparent;
 	padding-right: 0.5em;
+}
+#newreleases-head{
+	margin: 1.4em;
+}
+#title-release{
+	float: left;
+	font-style: italic;
+}
+#search-release{
+	float: right;
+}
+#search-release > input[type=text]{
+	background-image: url(../img/glass.png);
+	background-position: 99% 35%;
+	background-repeat: no-repeat;
+	border: 0 none;
+	border-bottom: 0.1em solid;
+	font-style: italic;
+}
+#search-release > img{
+	cursor: pointer;
+}
+#favorites{
+	margin-top: 3.5em !important;
+}
+#favorites-head{
+	font-style: italic;
+	margin: 1.4em;
+}
+#logof{
+	cursor: pointer;
+	float: right;
+	padding-right: 2em;
 }
 
 @media screen and (max-width: 360px) {
