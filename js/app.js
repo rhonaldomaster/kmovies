@@ -30,7 +30,7 @@ function queryTMDB(){
 							+"<div class='el-top-left'><img src='img/"+(isfav?"heartwhite":"heartred")+".png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
 							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'></div>"
 						+"</div>"
-						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
+						+"<div class='el-bottom' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'>"+v.title+"</div>"
 					+"</div>"
 				);
 			});
@@ -110,7 +110,7 @@ function listSimilar(){
 							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
 							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'></div>"
 						+"</div>"
-						+"<div class='el-bottom' onclick='viewDetails("+v.id+");'>"+v.title+"</div>"
+						+"<div class='el-bottom' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'>"+v.title+"</div>"
 					+"</div>"
 				);
 			});
@@ -168,7 +168,7 @@ function loadFavs(){
 								+"<div class='el-top-left'><img src='img/heartwhite.png' alt='favs'> "+(numberWithCommas(v1.vote_count))+"</div>"
 								+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v1.id+",\""+((v1.title).replace(/'/g, ""))+"\");'></div>"
 							+"</div>"
-							+"<div class='el-bottom' onclick='viewDetails("+v1.id+");'>"+v1.title+"</div>"
+							+"<div class='el-bottom' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'>"+v1.title+"</div>"
 						+"</div>"
 					);
 				},
