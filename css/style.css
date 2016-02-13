@@ -22,10 +22,15 @@ footer{
 .clear{
 	clear: both;
 }
+.newreleases-list{
+	margin: 0 auto;
+	width: 95%;
+}
 .movielement{
 	border-radius: 0.6em;
 	background-color: black;
 	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	box-sizing: border-box;
 	color: white;
 	display:inline-block;
 	min-height: 10em;
@@ -238,15 +243,20 @@ footer{
 	padding: 1.5em;
 }
 #modal-similar{
+	height: 14em;
+	max-height: 17em;
 	max-width: 100%;
 	overflow: auto;
+	position: relative;
+	top: -0.2em;
 }
 #modal-similar-list{
 	margin-left: -1em;
 	width: 110%;
+	position: absolute;
 }
 
-@media screen and (max-width: 360px) {
+/*@media screen and (max-width: 360px) {
 	#mainheader{
 		padding-bottom: 3em;
 	}
@@ -265,4 +275,4 @@ footer{
 	#mainbar,#userdiv{
 		display: inline;
 	}
-}
+}*/

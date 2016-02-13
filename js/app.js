@@ -74,7 +74,7 @@ function viewDetails(id){
 }
 
 function openModal(id,ttl){
-	$("#modal").show();
+	$("#modal").fadeIn('slow');
 	$("#modal-video").html("");
 	$("#modal-head span").html(ttl);
 	$.ajax({
