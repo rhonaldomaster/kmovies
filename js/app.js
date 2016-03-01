@@ -1,30 +1,32 @@
 var imdb = {
 	url: "https://api.themoviedb.org/3",
-	mode: "/movie/now_playing",
+	nowplaying: "/movie/now_playing",
 	key: "?api_key=e854c0d4c0559d18527b088a8e354568",
 	api: "e854c0d4c0559d18527b088a8e354568",
-	imgurl: "https://image.tmdb.org/t/p/"
+	imgurl: "https://image.tmdb.org/t/p/",
+	upcoming: "/movie/upcoming"
 };
 
 $(document).ready(function(){
 	$(".stars").stars();
-	queryTMDB();
+	queryTMDB("newreleases-list",imdb.nowplaying);
+	queryTMDB("upcoming-list",imdb.upcoming);
 	loadFavs();
 });
 
-function queryTMDB(){
-	$(".newreleases-list").html("Searching ... ");
+function queryTMDB(divclass,query){
+	$("."+divclass).html("Searching ... ");
 	$.ajax({
 		type: 'GET',
-		url: imdb.url + imdb.mode + imdb.key,
+		url: imdb.url + query + imdb.key,
 		dataType: 'jsonp',
 		success: function(resp) {
-			$(".newreleases-list").html("");
+			$("."+divclass).html("");
 			var json = resp.results;
 			$.each(json,function(i2,v){
 				if(i2==0) viewDetails(v.id);
 				var isfav = isFav(v.id);
-				$(".newreleases-list").append(
+				$("."+divclass).append(
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
 						+"<div class='el-top'>"
 							+"<div class='el-top-left'><img src='img/"+(isfav?"heartwhite":"heartred")+".png' alt='favs' onclick='addToFavs("+v.id+",this);'> "+(numberWithCommas(v.vote_count))+"</div>"
@@ -91,35 +93,12 @@ function openModal(id,ttl){
 			$("#modal-video").html("Trailer was not found: "+e.message);
 		}
 	});
-	 listSimilar();
+	listSimilar(id);
 }
 
-function listSimilar(){
+function listSimilar(id){
 	$("#modal-similar-list").html("");
-	$.ajax({
-		type: 'GET',
-		url: imdb.url+"/movie/now_playing?api_key="+imdb.api,
-		dataType: 'jsonp',
-		success: function(resp) {
-			var json = resp.results;
-			$.each(json,function(i2,v){
-				if(i2==0) viewDetails(v.id);
-				$("#modal-similar-list").append(
-					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
-						+"<div class='el-top'>"
-							+"<div class='el-top-left'><img src='img/heartred.png' alt='favs' onclick='addToFavs("+v.id+",this);'/> "+(numberWithCommas(v.vote_count))+"</div>"
-							+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'/></div>"
-						+"</div>"
-						+"<div class='el-bottom' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'>"+v.title+"</div>"
-					+"</div>"
-				);
-			});
-		},
-		error: function(e) {
-			console.log(e.message);
-			$("#modal-similar-list").html("No movies found: "+e.message);
-		}
-	});
+	queryTMDB("similar","/movie/"+id+"/similar");
 }
 
 function addToFavs(id,elem){
@@ -168,7 +147,7 @@ function loadFavs(){
 								+"<div class='el-top-left'><img src='img/heartwhite.png' alt='favs'/> "+(numberWithCommas(v1.vote_count))+"</div>"
 								+"<div class='el-top-right'><img src='img/download.png' alt='download' onclick='openModal("+v1.id+",\""+((v1.title).replace(/'/g, ""))+"\");'/></div>"
 							+"</div>"
-							+"<div class='el-bottom' onclick='openModal("+v.id+",\""+((v.title).replace(/'/g, ""))+"\");'>"+v1.title+"</div>"
+							+"<div class='el-bottom' onclick='openModal("+v1.id+",\""+((v1.title).replace(/'/g, ""))+"\");'>"+v1.title+"</div>"
 						+"</div>"
 					);
 				},

@@ -7,7 +7,7 @@
 	font-size: 1em;
 }
 body{
-	
+
 }
 footer{
 	background-color: #3F434D;
@@ -22,14 +22,13 @@ footer{
 .clear{
 	clear: both;
 }
-.newreleases-list{
+.newreleases-list,.upcoming-list{
 	margin: 0 auto;
 	width: 95%;
 }
 .movielement{
 	border-radius: 0.6em;
 	background-color: black;
-	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 	box-sizing: border-box;
 	color: white;
 	display:inline-block;
@@ -40,14 +39,14 @@ footer{
 	opacity: 0.8;
 	padding: 0.5em;
 	position: relative;
-	text-shadow: 0 0 3px #000;
+	text-shadow: 0 0 0.3em #000;
 	width: 10em;
 }
 .movielement > div > div > img{
 	cursor: pointer;
 }
 .movielement:hover{
-	border: 0.3em solid #cc0000;
+	box-shadow: 0 0 0.1em 0.3em #cc0000;
 	opacity: 1;
 }
 .info-item{
@@ -62,7 +61,7 @@ footer{
 	color: #cc0000;
 }
 .el-top{
-	
+
 }
 .el-top-left,.el-top-right{
 	display: inline-block;
@@ -195,6 +194,13 @@ footer{
 	margin-top: 3.5em !important;
 }
 #favorites-head{
+	font-style: italic;
+	margin: 1.4em;
+}
+#upcoming{
+	margin-top: 3.5em !important;
+}
+#upcoming-head{
 	font-style: italic;
 	margin: 1.4em;
 }
