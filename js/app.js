@@ -24,7 +24,7 @@ function queryTMDB(divclass,query){
 			$("."+divclass).html("");
 			var json = resp.results;
 			$.each(json,function(i2,v){
-				if(i2==0) viewDetails(v.id);
+				if(i2==0 && query==imdb.nowplaying) viewDetails(v.id);
 				var isfav = isFav(v.id);
 				$("."+divclass).append(
 					"<div class='movielement' style='background-image:url("+(imdb.imgurl+"w185"+v.poster_path)+");'>"
@@ -53,7 +53,7 @@ function viewDetails(id){
 	$("#centerimg img").prop("src","img/test1.png");
 	$.ajax({
 		type: 'GET',
-		url: imdb.url+"/movie/"+id+"?api_key="+imdb.api,
+		url: imdb.url+"/movie/"+id+imdb.key,
 		dataType: 'jsonp',
 		success: function(resp) {
 			var v = resp;
@@ -81,7 +81,7 @@ function openModal(id,ttl){
 	$("#modal-head span").html(ttl);
 	$.ajax({
 		type: 'GET',
-		url: imdb.url+"/movie/"+id+"/videos?api_key="+imdb.api,
+		url: imdb.url+"/movie/"+id+"/videos"+imdb.key,
 		dataType: 'jsonp',
 		success: function(resp) {
 			var v = resp.results[0];
@@ -137,7 +137,7 @@ function loadFavs(){
 		$.each(afavs,function(i2,v){
 			$.ajax({
 				type: 'GET',
-				url: imdb.url+"/movie/"+v+"?api_key="+imdb.api,
+				url: imdb.url+"/movie/"+v+imdb.key,
 				dataType: 'jsonp',
 				success: function(resp) {
 					var v1 = resp;
@@ -162,12 +162,10 @@ function loadFavs(){
 function isFav(id){
 	var lfavs = window.localStorage.getItem("favs");
 	var isf = false;
-	if(!lfavs) ;
-	else{
+	if(lfavs){
 		var afavs = lfavs.split("|");
 		for(i=0;i<afavs.length;i++){
 			if(id==afavs[i]){
-				console.log("encont en "+i);
 				isf = true;
 			}
 		}
