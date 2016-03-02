@@ -101,7 +101,26 @@
 			</div>
 		</div>
 		<!-- js -->
+		<script id="movie-element-template" type="text/x-handlebars-template">
+			<div class='movielement' style='background-image:url({{imgurl}}w185{{poster_path}});'>
+				<div class='el-top'>
+					<div class='el-top-left'><img src='img/{{heart}}.png' alt='favs' onclick='kmovies.AddToFavs({{id}},this);'>{{vote_count}}</div>
+					<div class='el-top-right'><img src='img/download.png' alt='download' onclick='kmovies.OpenModal({{id}},"{{title}}");'/></div>
+				</div>
+				<div class='el-bottom' onclick='kmovies.OpenModal({{id}},"{{title}}");'>{{title}}</div>
+			</div>
+		</script>
+		<script id="favs-element-template" type="text/x-handlebars-template">
+			<div class='movielement' style='background-image:url({{imgurl}}w185{{poster_path}});'>
+				<div class='el-top'>
+					<div class='el-top-left'><img src='img/{{heart}}.png' alt='favs'>{{vote_count}}</div>
+					<div class='el-top-right'><img src='img/download.png' alt='download' onclick='kmovies.OpenModal({{id}},"{{title}}");'/></div>
+				</div>
+				<div class='el-bottom' onclick='kmovies.OpenModal({{id}},"{{title}}");'>{{title}}</div>
+			</div>
+		</script>
 		<script src="js/jquery.js"></script>
+		<script src="js/handlebars.js"></script>
 		<script src="js/stars.js"></script>
 		<script src="js/utils.js"></script>
 		<script src="js/app.js"></script>
