@@ -126,7 +126,7 @@ var kmovies = (function() {
 		});
 		ajx.done(function(resp) {
 			var v = resp.results[0];
-			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/"+v.key+"?autoplay=1&showinfo=1&controls=1' frameborder='0' allowfullscreen></iframe>");
+			if(v!=null) $("#modal-video").html("<iframe width='80%' height='315' src='http://www.youtube.com/embed/qXti6uCbcCU?autoplay=1&showinfo=1&controls=1' frameborder='0' allowfullscreen></iframe>");
 			else $("#modal-video").html("Trailer was not found");
 		}).fail(function(e) {
 			console.log(e.message);
